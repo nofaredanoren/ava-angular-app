@@ -1,0 +1,47 @@
+<div>
+  <div class="form">
+    <label>Width: </label>
+    <input
+      type="text"
+      [(ngModel)]="videoWidth"
+    />
+    <label> Height: </label>
+    <input
+      type="text"
+      [(ngModel)]="videoHeight"
+    />
+    <br><br>
+    <label>token: </label>
+    <input
+      type="text"
+      [(ngModel)]="widgetConfig.token"
+    />
+    <label> accountId: </label>
+    <input
+      type="accountId"
+      [(ngModel)]="widgetConfig.accountId"
+    />
+    <br><br>
+    <label> longRegionCode: </label>
+    <input
+      type="longRegionCode"
+      [(ngModel)]="widgetConfig.longRegionCode"
+    />
+    <label> videoName: </label>
+    <input
+      type="videoName"
+      [(ngModel)]="widgetConfig.videoName"
+    />
+    <br><br>
+    <button (click)="render()">Render</button>
+    <br><br>
+    <label> Set API base: </label>
+    <input
+      type="apiBase"
+      [(ngModel)]="apiBase"
+    />
+    <button (click)="setAPIBase()">Set</button>
+  </div>
+  <rvx-widget #rvxWidget width="{{ videoWidth }}" height="{{videoHeight}}"></rvx-widget>
+</div>
+<router-outlet></router-outlet>
