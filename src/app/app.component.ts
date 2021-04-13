@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -8,12 +8,11 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 export class AppComponent implements AfterViewInit{
   title = 'ava-angular-app';
 
-  @ViewChild('rvxWidget', { static: false }) private RVXWidget;
-
   public videoWidth = '';
   public videoHeight = '';
 
   public apiBase = '';
+  public RVXWidget;
 
   public widgetConfig  = {
     token: '',
@@ -21,24 +20,26 @@ export class AppComponent implements AfterViewInit{
     longRegionCode: 'mint1',
     videoName: 'rodrigb-camera006'
   };
-  constructor() {
+  constructor(private el: ElementRef) {
 
   }
 
   ngAfterViewInit(): void {
-    this.RVXWidget.nativeElement.addEventListener('TOKEN_EXPIRED', () => {
+    this.RVXWidget =  document.createElement('rvx-widget');
+    this.RVXWidget.addEventListener('TOKEN_EXPIRED', () => {
       console.log('token expired');
     });
-    this.RVXWidget.nativeElement.configure(this.widgetConfig);
+    this.RVXWidget.configure(this.widgetConfig);
+    this.el.nativeElement.appendChild(this.RVXWidget);
   }
 
   public setAPIBase() {
-    const rvx  = this.RVXWidget.nativeElement;
+    const rvx  = this.RVXWidget;
     rvx.apiBase = this.apiBase;
   }
 
   public render() {
-    this.RVXWidget.nativeElement.configure(this.widgetConfig);
-    this.RVXWidget.nativeElement.render();
+    this.RVXWidget.configure(this.widgetConfig);
+    this.RVXWidget.render();
   }
 }
