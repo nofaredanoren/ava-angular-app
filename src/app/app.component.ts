@@ -14,6 +14,7 @@ export class AppComponent implements AfterViewInit{
   public videoHeight = '';
 
   public apiBase = '';
+  public accessToken = '';
 
   public widgetConfig  = {
     token: '',
@@ -35,6 +36,12 @@ export class AppComponent implements AfterViewInit{
   public setAPIBase() {
     const rvx  = this.RVXWidget.nativeElement;
     rvx.apiBase = this.apiBase;
+  }
+
+  public setAccessToken() {
+    const rvx  = this.RVXWidget.nativeElement;
+    this.widgetConfig.token = this.accessToken;
+    rvx.setAccessToken(this.accessToken);
   }
 
   public render() {

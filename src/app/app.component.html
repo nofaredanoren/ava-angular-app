@@ -42,6 +42,13 @@
       [(ngModel)]="apiBase"
     />
     <button (click)="setAPIBase()">Set</button>
+    <label> Set Access token: </label>
+    <input
+      type="accessToken"
+      [(ngModel)]="accessToken"
+    />
+    <button (click)="setAccessToken()">Set</button>
+
   </div>
   <rvx-widget #rvxWidget width="{{ videoWidth }}" height="{{videoHeight}}"></rvx-widget>
 </div>
