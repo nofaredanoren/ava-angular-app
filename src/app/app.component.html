@@ -34,7 +34,7 @@
       [(ngModel)]="widgetConfig.videoName"
     />
     <br><br>
-    <button (click)="render()">Render</button>
+    <button (click)="load()">load</button>
     <br><br>
     <label> Set API base: </label>
     <input
@@ -50,6 +50,6 @@
     <button (click)="setAccessToken()">Set</button>
 
   </div>
-  <rvx-widget #rvxWidget width="{{ videoWidth }}" height="{{videoHeight}}"></rvx-widget>
+  <ava-player #avaPlayer width="{{ videoWidth }}" height="{{videoHeight}}"></ava-player>
 </div>
 <router-outlet></router-outlet>

@@ -27,7 +27,7 @@
               "src/styles.css"
             ],
             "scripts": [
-              "src/ava-widgets-sdk.js"
+              "src/ava-widgets.js"
             ]
           },
           "configurations": {
@@ -92,7 +92,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": ["src/ava-widgets-sdk.js"]
+            "scripts": ["src/ava-widgets.js"]
           }
         },
         "lint": {

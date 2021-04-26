@@ -8,7 +8,7 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 export class AppComponent implements AfterViewInit{
   title = 'ava-angular-app';
 
-  @ViewChild('rvxWidget', { static: false }) private RVXWidget;
+  @ViewChild('avaPlayer', { static: false }) private avaPlayer;
 
   public videoWidth = '';
   public videoHeight = '';
@@ -22,30 +22,30 @@ export class AppComponent implements AfterViewInit{
     longRegionCode: 'mint1',
     videoName: 'rodrigb-camera006'
   };
+
   constructor() {
 
   }
 
   ngAfterViewInit(): void {
-    this.RVXWidget.nativeElement.addEventListener('TOKEN_EXPIRED', () => {
+    this.avaPlayer.nativeElement.addEventListener('TOKEN_EXPIRED', () => {
       console.log('token expired');
     });
-    this.RVXWidget.nativeElement.configure(this.widgetConfig);
   }
 
   public setAPIBase() {
-    const rvx  = this.RVXWidget.nativeElement;
+    const rvx  = this.avaPlayer.nativeElement;
     rvx.apiBase = this.apiBase;
   }
 
   public setAccessToken() {
-    const rvx  = this.RVXWidget.nativeElement;
+    const player = this.avaPlayer.nativeElement;
     this.widgetConfig.token = this.accessToken;
-    rvx.setAccessToken(this.accessToken);
+    player.setAccessToken(this.accessToken);
   }
 
-  public render() {
-    this.RVXWidget.nativeElement.configure(this.widgetConfig);
-    this.RVXWidget.nativeElement.render();
+  public load() {
+    this.avaPlayer.nativeElement.configure(this.widgetConfig);
+    this.avaPlayer.nativeElement.load();
   }
 }
