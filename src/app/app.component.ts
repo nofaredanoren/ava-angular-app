@@ -18,9 +18,8 @@ export class AppComponent implements AfterViewInit{
 
   public widgetConfig  = {
     token: '',
-    accountId: 'b43e0a4333ff49599b5f6c213b8626f2',
-    longRegionCode: 'mint1',
-    videoName: 'live-yolov3-tracker'
+    clientApiEndpointUrl: '',
+    videoName: ''
   };
 
   constructor() {
