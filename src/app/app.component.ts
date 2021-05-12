@@ -48,8 +48,7 @@ export class AppComponent implements AfterViewInit{
     this.avaPlayer.nativeElement.configure(this.widgetConfig);
     this.avaPlayer.nativeElement.load();
 
-    this.avaPlayerDrawer.nativeElement
-    .configure({
+    this.avaPlayerDrawer.nativeElement.configure({
       ...this.widgetConfig,
       debug: true,
       playerControllers: [
