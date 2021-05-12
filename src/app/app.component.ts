@@ -9,6 +9,8 @@ export class AppComponent implements AfterViewInit{
   title = 'ava-angular-app';
 
   @ViewChild('avaPlayer', { static: false }) private avaPlayer;
+  @ViewChild('avaPlayerDrawer', { static: false }) private avaPlayerDrawer;
+  @ViewChild('zoneDrawer', { static: false }) private zoneDrawer;
 
   public videoWidth = '700px';
   public videoHeight = '';
@@ -23,7 +25,6 @@ export class AppComponent implements AfterViewInit{
   };
 
   constructor() {
-
   }
 
   ngAfterViewInit(): void {
@@ -46,5 +47,30 @@ export class AppComponent implements AfterViewInit{
   public load() {
     this.avaPlayer.nativeElement.configure(this.widgetConfig);
     this.avaPlayer.nativeElement.load();
+
+    this.avaPlayerDrawer.nativeElement
+    .configure({
+      ...this.widgetConfig,
+      debug: true,
+      playerControllers: [
+        'rewind',
+        'play_pause',
+        'fast_forward',
+        'mute',
+        'volume',
+        'spacer',
+        'next_day',
+        'previous_day',
+        'hours_label'
+      ]
+    });
+    this.avaPlayerDrawer.nativeElement.load();
+
+    // Configure zone draw
+    this.zoneDrawer.nativeElement.configure({
+      debug: true
+    });
+
+    this.zoneDrawer.nativeElement.load();
   }
 }
