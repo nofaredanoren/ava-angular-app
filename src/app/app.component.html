@@ -1,53 +1,66 @@
-<div>
-  <h1>AVA widgets test page</h1>
+<div class="container">
+  <h2>AVA widgets test page</h2>
+  <h5>
+    This demo page works with the latest version of the package <a href="https://www.npmjs.com/package/video-analyzer-widgets">here</a>
+  </h5>
+  <h4>Basic configuration</h4>
   <div class="form">
+    <div class="control">
     <label>Width: </label>
     <input
       type="text"
       [(ngModel)]="videoWidth"
     />
-    <label> Height: </label>
-    <input
-      type="text"
-      [(ngModel)]="videoHeight"
-    />
-    <br><br>
-    <label>token: </label>
+    </div>
+    <div class="control">
+
+  <div class="control long">
+    <label>Access Token </label>
     <input
       type="text"
       [(ngModel)]="widgetConfig.token"
     />
-    <label> clientApiEndpointUrl: </label>
-    <input
-      type="clientApiEndpointUrl"
-      [(ngModel)]="widgetConfig.clientApiEndpointUrl"
-    />
-    <br><br>
-    <label> videoName: </label>
-    <input
-      type="videoName"
-      [(ngModel)]="widgetConfig.videoName"
-    />
-    <br><br>
-    <button (click)="load()">load</button>
-    <br><br>
+
+  </div>
+<div class="control long">
+  <label> Client API Endpoint Url </label>
+  <input
+    placeholder="https://{accountId}.api.{longRegionCode}.videoanalyzer.azure.net"
+    type="clientApiEndpointUrl"
+    [(ngModel)]="widgetConfig.clientApiEndpointUrl"
+  />
+</div>
+    <div class="control">
+
+      <label> Video Name </label>
+      <input
+        type="videoName"
+        [(ngModel)]="widgetConfig.videoName"
+      />
+    </div>
+    <div class="control">
+
+      <button (click)="load()">Load Player</button>
+    </div>
+    <h4>Runtime methods</h4>
     <label> Set API base: </label>
     <input
       type="apiBase"
       [(ngModel)]="apiBase"
     />
-    <button (click)="setAPIBase()">Set</button>
+    <button (click)="setAPIBase()" class="inline">Set</button>
     <label> Set Access token: </label>
     <input
       type="accessToken"
       [(ngModel)]="accessToken"
     />
-    <button (click)="setAccessToken()">Set</button>
+    <button (click)="setAccessToken()" class="inline">Set</button>
 
   </div>
   <ava-player #avaPlayer width="{{ videoWidth }}" height="{{videoHeight}}"></ava-player>
   <br>
   <br>
+  <h4>Zone Drawer Widget (Under construction)</h4>
   <ava-zone-drawer #zoneDrawer>
     <ava-player #avaPlayerDrawer  slot="player" width="{{ videoWidth }}" height="{{videoHeight}}"></ava-player>
   </ava-zone-drawer>

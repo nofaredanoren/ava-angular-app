@@ -28,6 +28,8 @@ export class AppComponent implements AfterViewInit{
   }
 
   ngAfterViewInit(): void {
+    // this.zoneDrawer.nativeElement.width = this.videoWidth;
+    this.avaPlayer.nativeElement.width=this.videoWidth;
     this.avaPlayer.nativeElement.addEventListener('TOKEN_EXPIRED', () => {
       console.log('token expired');
     });
@@ -69,6 +71,8 @@ export class AppComponent implements AfterViewInit{
     this.zoneDrawer.nativeElement.configure({
       debug: true
     });
+
+    
 
     this.zoneDrawer.nativeElement.load();
   }
