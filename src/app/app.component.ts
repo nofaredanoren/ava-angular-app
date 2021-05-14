@@ -72,7 +72,7 @@ export class AppComponent implements AfterViewInit{
       debug: true
     });
 
-    
+
 
     this.zoneDrawer.nativeElement.load();
   }
