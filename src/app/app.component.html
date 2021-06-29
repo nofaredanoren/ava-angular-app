@@ -1,68 +1,364 @@
-<div class="container">
-  <h2>AVA widgets test page</h2>
+<div class="container {{ theme === 'dark' ? '' : 'light' }}">
+  <h2>AVA widgets demo page</h2>
   <h5>
-    This demo page works with the latest version of the package <a href="https://www.npmjs.com/package/video-analyzer-widgets">here</a>
+    This demo page works with the latest version of the package
+    <a href="https://www.npmjs.com/@azure/video-analyzer-widgets">here</a>
   </h5>
-  <h4>Basic configuration</h4>
-  <div class="form">
-    <div class="control">
-    <label>Width: </label>
-    <input
-      type="text"
-      [(ngModel)]="videoWidth"
-    />
+  <div>
+    <h3>General</h3>
+    <div class="control long">
+      <label> Theme </label>
+      <select [(ngModel)]="theme">
+        <option value="dark">Dark</option>
+        <option value="light">Light</option>
+      </select>
     </div>
-    <div class="control">
-
-  <div class="control long">
-    <label>Access Token </label>
-    <input
-      type="text"
-      [(ngModel)]="widgetConfig.token"
-    />
-
   </div>
-<div class="control long">
-  <label> Client API Endpoint Url </label>
-  <input
-    placeholder="https://{accountId}.api.{longRegionCode}.videoanalyzer.azure.net"
-    type="clientApiEndpointUrl"
-    [(ngModel)]="widgetConfig.clientApiEndpointUrl"
-  />
-</div>
-    <div class="control">
+  <div>
+    <h3>Player widget</h3>
+    <h4>Basic configuration</h4>
+    <div class="form">
+      <div class="control">
+        <label>Width: </label>
+        <input type="text" [(ngModel)]="videoWidth" />
+      </div>
+      <div class="control">
+        <div class="control long">
+          <label>Access Token </label>
+          <input type="text" [(ngModel)]="widgetConfig.token" />
+        </div>
+        <div class="control long">
+          <label> Client API Endpoint Url </label>
+          <input
+            placeholder="https://{accountId}.api.{longRegionCode}.videoanalyzer.azure.net"
+            type="clientApiEndpointUrl"
+            [(ngModel)]="widgetConfig.clientApiEndpointUrl"
+          />
+        </div>
+        <div class="control">
+          <label> Video Name </label>
+          <input type="videoName" [(ngModel)]="widgetConfig.videoName" />
+        </div>
+        <div class="control long">
+          <label> Locale </label>
+          <select [(ngModel)]="widgetConfig.locale">
+            <option value="en">English</option>
+            <option value="de">German</option>
+          </select>
+        </div>
+        <div>
+          <div class="control allowed-controllers">
+            <p>Controllers to render on the player widget:</p>
+            <div>
+              <input
+                class="allowed-controllers"
+                type="checkbox"
+                name="all"
+                id="all"
+                value="all"
+                [(ngModel)]="selectAllControllers"
+                (change)="selectAllOfControllers()"
+                checked
+              />
+              <label for="all">All controllers</label>
+            </div>
+            <br>
+            <div>
+              <div>
+                <input
+                  class="allowed-controllers"
+                  type="checkbox"
+                  name="rewind"
+                  id="rewind"
+                  [(ngModel)]="allowedControllers.rewind"
+                  value="rewind"
+                  (change)="controllerChange()"
+                />
+                <label for="rewind">Rewind</label>
+              </div>
+              <div>
+                <input
+                  class="allowed-controllers"
+                  type="checkbox"
+                  name="play_pause"
+                  id="play_pause"
+                  value="play_pause"
+                  (change)="controllerChange()"
+                  [(ngModel)]="allowedControllers.play_pause"
+                />
+                <label for="play_pause">Play pause</label>
+              </div>
+              <div>
+                <input
+                  class="allowed-controllers"
+                  type="checkbox"
+                  name="fast_forward"
+                  id="fast_forward"
+                  value="fast_forward"
+                  (change)="controllerChange()"
+                  [(ngModel)]="allowedControllers.fast_forward"
+                />
+                <label for="fast_forward">Fast forward</label>
+              </div>
+              <div>
+                <input
+                  class="allowed-controllers"
+                  type="checkbox"
+                  name="live"
+                  id="live"
+                  value="live"
+                  (change)="controllerChange()"
+                  [(ngModel)]="allowedControllers.live"
+                />
+                <label for="live">Live</label>
+              </div>
+              <div>
+                <input
+                  class="allowed-controllers"
+                  type="checkbox"
+                  name="mute"
+                  id="mute"
+                  (change)="controllerChange()"
+                  value="mute"
+                  [(ngModel)]="allowedControllers.mute"
+                />
+                <label for="mute">Mute</label>
+              </div>
+              <div>
+                <input
+                  class="allowed-controllers"
+                  type="checkbox"
+                  name="volume"
+                  id="volume"
+                  value="volume"
+                  (change)="controllerChange()"
+                  [(ngModel)]="allowedControllers.volume"
+                />
+                <label for="volume">Volume</label>
+              </div>
+              <div>
+                <input
+                  class="allowed-controllers"
+                  type="checkbox"
+                  name="meta_data_layer"
+                  id="meta_data_layer"
+                  value="meta_data_layer"
+                  (change)="controllerChange()"
+                  [(ngModel)]="allowedControllers.meta_data_layer"
+                />
+                <label for="meta_data_layer">Meta data layer</label>
+              </div>
+              <div>
+                <input
+                  class="allowed-controllers"
+                  type="checkbox"
+                  name="overflow_menu"
+                  id="overflow_menu"
+                  value="overflow_menu"
+                  (change)="controllerChange()"
+                  [(ngModel)]="allowedControllers.overflow_menu"
+                />
+                <label for="overflow_menu">Overflow menu</label>
+              </div>
+              <div>
+                <input
+                  class="allowed-controllers"
+                  type="checkbox"
+                  name="fullscreen"
+                  id="fullscreen"
+                  value="fullscreen"
+                  (change)="controllerChange()"
+                  [(ngModel)]="allowedControllers.fullscreen"
+                />
+                <label for="fullscreen">Fullscreen</label>
+              </div>
+              <div>
+                <input
+                  class="allowed-controllers"
+                  type="checkbox"
+                  name="next_day"
+                  id="next_day"
+                  value="next_day"
+                  (change)="controllerChange()"
+                  [(ngModel)]="allowedControllers.next_day"
+                />
+                <label for="next_day">Next day</label>
+              </div>
+              <div>
+                <input
+                  class="allowed-controllers"
+                  type="checkbox"
+                  name="previous_day"
+                  id="previous_day"
+                  value="previous_day"
+                  (change)="controllerChange()"
+                  [(ngModel)]="allowedControllers.previous_day"
+                />
+                <label for="previous_day">Previous day</label>
+              </div>
+              <div>
+                <input
+                  class="allowed-controllers"
+                  type="checkbox"
+                  name="hours_label"
+                  id="hours_label"
+                  value="hours_label"
+                  (change)="controllerChange()"
+                  [(ngModel)]="allowedControllers.hours_label"
+                />
+                <label for="hours_label">Hours label</label>
+              </div>
+              <div>
+                <input
+                  class="allowed-controllers"
+                  type="checkbox"
+                  name="next_segment"
+                  id="next_segment"
+                  value="next_segment"
+                  (change)="controllerChange()"
+                  [(ngModel)]="allowedControllers.next_segment"
+                />
+                <label for="next_segment">Next segment</label>
+              </div>
+              <div>
+                <input
+                  class="allowed-controllers"
+                  type="checkbox"
+                  name="prev_segment"
+                  id="prev_segment"
+                  value="prev_segment"
+                  (change)="controllerChange()"
+                  [(ngModel)]="allowedControllers.prev_segment"
+                />
+                <label for="prev_segment">Prev segment</label>
+              </div>
+              <div>
+                <input
+                  class="allowed-controllers"
+                  type="checkbox"
+                  name="date_picker"
+                  id="date_picker"
+                  value="date_picker"
+                  (change)="controllerChange()"
+                  [(ngModel)]="allowedControllers.date_picker"
+                />
+                <label for="date_picker">Date picker</label>
+              </div>
+              <div>
+                <input
+                  class="allowed-controllers"
+                  type="checkbox"
+                  name="camera_name"
+                  id="camera_name"
+                  value="camera_name"
+                  (change)="controllerChange()"
+                  [(ngModel)]="allowedControllers.camera_name"
+                />
+                <label for="camera_name">Camera name</label>
+              </div>
+              <div>
+                <input
+                  class="allowed-controllers"
+                  type="checkbox"
+                  name="timestamp"
+                  id="timestamp"
+                  value="timestamp"
+                  (change)="controllerChange()"
+                  [(ngModel)]="allowedControllers.timestamp"
+                />
+                <label for="timestamp">Timestamp</label>
+              </div>
+              <div>
+                <input
+                  class="allowed-controllers"
+                  type="checkbox"
+                  name="timeline_zoom"
+                  id="timeline_zoom"
+                  value="timeline_zoom"
+                  (change)="controllerChange()"
+                  [(ngModel)]="allowedControllers.timeline_zoom"
+                />
+                <label for="timeline_zoom">Timeline zoom</label>
+              </div>
+            </div>
+            <div></div>
+            <br /><br />
+            <div class="control">
+              <button (click)="load()">Load Player</button>
+            </div>
+            <h4>Runtime methods</h4>
+            <label> Set API base: </label>
+            <input type="apiBase" [(ngModel)]="apiBase" />
+            <button (click)="setAPIBase()" class="inline">Set</button>
+            <label> Set Access token: </label>
+            <input type="accessToken" [(ngModel)]="accessToken" />
+            <button (click)="setAccessToken()" class="inline">Set</button>
+          </div>
+          <ava-design-system-provider theme="{{ theme }}">
+            <ava-player
+              #avaPlayer
+              width="{{ videoWidth }}"
+              height="{{ videoHeight }}"
+            ></ava-player>
+          </ava-design-system-provider>
+        </div>
+      </div>
+      <div>
+        <h3>Zone Drawer Widget</h3>
+        <h4>Basic configuration</h4>
+        <div class="form">
+          <div class="control">
+            <label>Width: </label>
+            <input type="text" [(ngModel)]="zoneDrawWidth" />
+          </div>
+          <div class="control">
+            <div class="control long">
+              <label>Access Token </label>
+              <input
+                type="text"
+                [(ngModel)]="widgetConfigZoneDrawerPlayer.token"
+              />
+            </div>
+            <div class="control long">
+              <label> Client API Endpoint Url </label>
+              <input
+                placeholder="https://{accountId}.api.{longRegionCode}.videoanalyzer.azure.net"
+                type="clientApiEndpointUrl"
+                [(ngModel)]="widgetConfigZoneDrawerPlayer.clientApiEndpointUrl"
+              />
+            </div>
+            <div class="control">
+              <label> Video Name </label>
+              <input
+                type="videoName"
+                [(ngModel)]="widgetConfigZoneDrawerPlayer.videoName"
+              />
+            </div>
+            <div class="control long">
+              <label> Locale </label>
+              <select [(ngModel)]="widgetConfigZoneDrawerPlayer.locale">
+                <option value="en">English</option>
+                <option value="de">German</option>
+              </select>
+            </div>
+            <div class="control">
+              <button (click)="loadZoneDrawer()">Load zone drawer</button>
+            </div>
+          </div>
+          <br />
+          <br />
+          <ava-design-system-provider
+            theme="{{ theme }}"
+            [style.width]="zoneDrawWidth"
+          >
+            <ava-zone-drawer #zoneDrawer width="{{ zoneDrawWidth }}">
+              <ava-player #avaPlayerDrawer></ava-player>
+            </ava-zone-drawer>
+          </ava-design-system-provider>
+        </div>
+      </div>
 
-      <label> Video Name </label>
-      <input
-        type="videoName"
-        [(ngModel)]="widgetConfig.videoName"
-      />
+      <router-outlet></router-outlet>
     </div>
-    <div class="control">
-
-      <button (click)="load()">Load Player</button>
-    </div>
-    <h4>Runtime methods</h4>
-    <label> Set API base: </label>
-    <input
-      type="apiBase"
-      [(ngModel)]="apiBase"
-    />
-    <button (click)="setAPIBase()" class="inline">Set</button>
-    <label> Set Access token: </label>
-    <input
-      type="accessToken"
-      [(ngModel)]="accessToken"
-    />
-    <button (click)="setAccessToken()" class="inline">Set</button>
-
   </div>
-  <ava-player #avaPlayer width="{{ videoWidth }}" height="{{videoHeight}}"></ava-player>
-  <br>
-  <br>
-  <h4>Zone Drawer Widget (Under construction)</h4>
-  <ava-zone-drawer #zoneDrawer>
-    <ava-player #avaPlayerDrawer width="{{ videoWidth }}" height="{{videoHeight}}"></ava-player>
-  </ava-zone-drawer>
 </div>
-<router-outlet></router-outlet>

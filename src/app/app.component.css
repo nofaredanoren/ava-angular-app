@@ -2,6 +2,10 @@
   padding: 10px;
 }
 
+.container.light {
+  background-color: rgb(250 235 215);
+}
+
 .form {
   padding-bottom: 50px;
 }
@@ -16,6 +20,16 @@ input {
   border: 1px solid;
 }
 
+input {
+  height: 20px;
+  border-radius: 0;
+  border: 1px solid;
+}
+
+input.allowed-controllers {
+  height: auto;
+}
+
 input:focus {
   border-color: dodgerblue;
   border-radius: 0;
@@ -25,10 +39,28 @@ input:focus {
   min-width: 400px;
   width: auto;
 }
+
+.control.allowed-controllers label {
+  padding-left: 2px;
+  font-size: 15px;
+}
+
+.control.allowed-controllers div {
+  padding-left: 10px;
+  display: inline-block;
+}
 h4 {
   color: dodgerblue;
 }
 
 .inline {
   vertical-align: top;
+}
+
+ava-design-system-provider {
+  display: inline-block;
+}
+
+ava-zone-drawer {
+  display: block;
 }
