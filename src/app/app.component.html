@@ -8,40 +8,41 @@
     <h3>General</h3>
     <div class="control long">
       <label> Theme </label>
-      <select [(ngModel)]="theme">
+      <select [(ngModel)]="theme" name="theme">
         <option value="dark">Dark</option>
         <option value="light">Light</option>
       </select>
     </div>
   </div>
-  <div>
+  <form>
     <h3>Player widget</h3>
     <h4>Basic configuration</h4>
     <div class="form">
       <div class="control">
         <label>Width: </label>
-        <input type="text" [(ngModel)]="videoWidth" />
+        <input type="text" [(ngModel)]="videoWidth" autocomplete="on" name="videoWidth"/>
       </div>
       <div class="control">
         <div class="control long">
           <label>Access Token </label>
-          <input type="text" [(ngModel)]="widgetConfig.token" />
+          <input type="text" [(ngModel)]="widgetConfig.token" autocomplete="on" name="Token" />
         </div>
         <div class="control long">
           <label> Client API Endpoint Url </label>
           <input
             placeholder="https://{accountId}.api.{longRegionCode}.videoanalyzer.azure.net"
-            type="clientApiEndpointUrl"
+            type="text"
             [(ngModel)]="widgetConfig.clientApiEndpointUrl"
+            autocomplete="on" name="clientApiEndpointUrl"
           />
         </div>
         <div class="control">
           <label> Video Name </label>
-          <input type="videoName" [(ngModel)]="widgetConfig.videoName" />
+          <input type="text" [(ngModel)]="widgetConfig.videoName" name="videoName"/>
         </div>
         <div class="control long">
           <label> Locale </label>
-          <select [(ngModel)]="widgetConfig.locale">
+          <select [(ngModel)]="widgetConfig.locale" name="locale">
             <option value="en">English</option>
             <option value="de">German</option>
           </select>
@@ -288,10 +289,10 @@
             </div>
             <h4>Runtime methods</h4>
             <label> Set API base: </label>
-            <input type="apiBase" [(ngModel)]="apiBase" />
+            <input type="text" [(ngModel)]="apiBase" autocomplete="on" name="apiBase" />
             <button (click)="setAPIBase()" class="inline">Set</button>
             <label> Set Access token: </label>
-            <input type="accessToken" [(ngModel)]="accessToken" />
+            <input type="text" [(ngModel)]="accessToken"  autocomplete="on"  name="accessToken"/>
             <button (click)="setAccessToken()" class="inline">Set</button>
           </div>
           <ava-design-system-provider theme="{{ theme }}">
@@ -309,7 +310,7 @@
         <div class="form">
           <div class="control">
             <label>Width: </label>
-            <input type="text" [(ngModel)]="zoneDrawWidth" />
+            <input type="text" [(ngModel)]="zoneDrawWidth" name="zoneDrawWidth" />
           </div>
           <div class="control">
             <div class="control long">
@@ -317,26 +318,29 @@
               <input
                 type="text"
                 [(ngModel)]="widgetConfigZoneDrawerPlayer.token"
+                autocomplete="on"  name="accessToken"
               />
             </div>
             <div class="control long">
               <label> Client API Endpoint Url </label>
               <input
                 placeholder="https://{accountId}.api.{longRegionCode}.videoanalyzer.azure.net"
-                type="clientApiEndpointUrl"
+                type="text"
                 [(ngModel)]="widgetConfigZoneDrawerPlayer.clientApiEndpointUrl"
+                autocomplete="on"  name="clientApiEndpointUrl"
               />
             </div>
             <div class="control">
               <label> Video Name </label>
               <input
-                type="videoName"
+                type="text"
                 [(ngModel)]="widgetConfigZoneDrawerPlayer.videoName"
+                autocomplete="on"  name="videoName"
               />
             </div>
             <div class="control long">
               <label> Locale </label>
-              <select [(ngModel)]="widgetConfigZoneDrawerPlayer.locale">
+              <select [(ngModel)]="widgetConfigZoneDrawerPlayer.locale" name="locale">
                 <option value="en">English</option>
                 <option value="de">German</option>
               </select>
@@ -360,5 +364,5 @@
 
       <router-outlet></router-outlet>
     </div>
-  </div>
+  </form>
 </div>
